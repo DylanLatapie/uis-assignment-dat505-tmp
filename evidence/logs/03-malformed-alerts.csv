@@ -1,0 +1,10 @@
+time,ts,kind,severity,src,dst,detail
+2026-10-20 00:23:23,1792448603.866984,malformed_browse,medium,172.18.0.1,172.18.0.2,unparseable browse datagram (26 bytes): b'\xff\xfe\x00 not-a-browse-packet \x01\x02'
+2026-10-20 00:23:24,1792448604.912238,malformed_browse,medium,172.18.0.1,172.18.0.2,unparseable browse datagram (26 bytes): b'\xff\xfe\x00 not-a-browse-packet \x01\x02'
+2026-10-20 00:23:25,1792448605.259045,malformed_browse,medium,172.18.0.1,172.18.0.2,invalid port in URI: 99999
+2026-10-20 00:23:25,1792448605.259045,unauthorized_advertisement,high,172.18.0.1,172.18.0.2,advertises printer at 192.0.2.10:99999 (uri=ipp://192.0.2.10:99999/printers/evil)
+2026-10-20 00:23:26,1792448606.30382,malformed_browse,medium,172.18.0.1,172.18.0.2,invalid port in URI: 99999
+2026-10-20 00:23:26,1792448606.30382,unauthorized_advertisement,high,172.18.0.1,172.18.0.2,advertises printer at 192.0.2.10:99999 (uri=ipp://192.0.2.10:99999/printers/evil)
+2026-10-20 00:23:26,1792448606.631035,malformed_browse,medium,172.18.0.1,172.18.0.2,unparseable browse datagram (4 bytes): b'3 3\n'
+2026-10-20 00:23:27,1792448607.659756,malformed_browse,medium,172.18.0.1,172.18.0.2,unparseable browse datagram (4 bytes): b'3 3\n'
+2026-10-20 00:23:27,1792448607.659756,repeated_advertisement,high,172.18.0.1,172.18.0.2,6 browse packets in 10s window

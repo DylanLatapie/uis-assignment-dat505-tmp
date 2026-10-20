@@ -1,0 +1,263 @@
+[
+  {
+    "ts": 1792441956.831095,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 172.18.0.1:6310 (uri=ipp://172.18.0.1:6310/printers/LabPrinter)",
+    "time": "2026-10-19 22:32:36"
+  },
+  {
+    "ts": 1792441956.834379,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "172.18.0.1",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 172.18.0.1:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:36"
+  },
+  {
+    "ts": 1792441957.867977,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 172.18.0.1:6310 (uri=ipp://172.18.0.1:6310/printers/LabPrinter)",
+    "time": "2026-10-19 22:32:37"
+  },
+  {
+    "ts": 1792441957.871865,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "172.18.0.1",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 172.18.0.1:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:37"
+  },
+  {
+    "ts": 1792441958.202994,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:9999 (uri=ipp://192.0.2.10:9999/printers/evil2)",
+    "time": "2026-10-19 22:32:38"
+  },
+  {
+    "ts": 1792441958.204635,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:9999 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:38"
+  },
+  {
+    "ts": 1792441959.23887,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:9999 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:39"
+  },
+  {
+    "ts": 1792441959.240167,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:9999 (uri=ipp://192.0.2.10:9999/printers/evil2)",
+    "time": "2026-10-19 22:32:39"
+  },
+  {
+    "ts": 1792441959.542976,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:6310 (uri=ipp://192.0.2.10:6310/printers/evil)",
+    "time": "2026-10-19 22:32:39"
+  },
+  {
+    "ts": 1792441960.261718,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:9999 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:40"
+  },
+  {
+    "ts": 1792441960.567997,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:6310 (uri=ipp://192.0.2.10:6310/printers/evil)",
+    "time": "2026-10-19 22:32:40"
+  },
+  {
+    "ts": 1792441960.567997,
+    "kind": "repeated_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "6 browse packets in 10s window",
+    "time": "2026-10-19 22:32:40"
+  },
+  {
+    "ts": 1792441960.894887,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:6310 (uri=ipp://192.0.2.10:6310/printers/evil)",
+    "time": "2026-10-19 22:32:40"
+  },
+  {
+    "ts": 1792441961.236826,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:9999 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:41"
+  },
+  {
+    "ts": 1792441961.931939,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:6310 (uri=ipp://192.0.2.10:6310/printers/evil)",
+    "time": "2026-10-19 22:32:41"
+  },
+  {
+    "ts": 1792441962.243028,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:9999 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:42"
+  },
+  {
+    "ts": 1792441963.268891,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:9999 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:43"
+  },
+  {
+    "ts": 1792441964.27364,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:44"
+  },
+  {
+    "ts": 1792441965.282096,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:45"
+  },
+  {
+    "ts": 1792441966.308121,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:46"
+  },
+  {
+    "ts": 1792441967.300753,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:47"
+  },
+  {
+    "ts": 1792441968.322833,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:48"
+  },
+  {
+    "ts": 1792441969.348857,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:49"
+  },
+  {
+    "ts": 1792441970.344963,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:50"
+  },
+  {
+    "ts": 1792441971.362198,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:51"
+  },
+  {
+    "ts": 1792441972.386771,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:52"
+  },
+  {
+    "ts": 1792441973.37672,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:53"
+  },
+  {
+    "ts": 1792441974.402187,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:54"
+  },
+  {
+    "ts": 1792441975.428785,
+    "kind": "suspicious_ipp_connection",
+    "severity": "high",
+    "src": "172.18.0.2",
+    "dst": "192.0.2.10",
+    "detail": "CUPS host opened outbound connection to non-allowlisted 192.0.2.10:6310 (acted on an advertisement)",
+    "time": "2026-10-19 22:32:55"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "ts": 1792449103.931054,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 172.18.0.1:6310 (uri=ipp://172.18.0.1:6310/printers/LabPrinter)",
+    "time": "2026-10-20 00:31:43"
+  },
+  {
+    "ts": 1792449104.971848,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 172.18.0.1:6310 (uri=ipp://172.18.0.1:6310/printers/LabPrinter)",
+    "time": "2026-10-20 00:31:44"
+  },
+  {
+    "ts": 1792449105.286818,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:9999 (uri=ipp://192.0.2.10:9999/printers/evil2)",
+    "time": "2026-10-20 00:31:45"
+  },
+  {
+    "ts": 1792449106.31611,
+    "kind": "unauthorized_advertisement",
+    "severity": "high",
+    "src": "172.18.0.1",
+    "dst": "172.18.0.2",
+    "detail": "advertises printer at 192.0.2.10:9999 (uri=ipp://192.0.2.10:9999/printers/evil2)",
+    "time": "2026-10-20 00:31:46"
+  }
+]
