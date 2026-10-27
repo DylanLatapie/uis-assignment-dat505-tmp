@@ -123,7 +123,6 @@ experiments, results, mitigations, and ethical considerations.
 | `pcap_files/` | captured traffic: `01-normal`, `02-attack`, `03-malformed`, `04-mitigated` (+ attacker-side send) |
 | `evidence/screenshots/` | screenshots (lab, attack, detection, mitigation) |
 | `evidence/logs/` | detector alert exports (CSV/JSON) per scenario |
-| `report/` | LaTeX source of the PDF report (`report.pdf`) |
 
 ### Quick start
 
@@ -139,4 +138,4 @@ sudo python3 cups_attack.py --help
 sudo python3 cups_detector.py --help
 ```
 
-See `report/report.pdf` for the full write-up.
+The full write-up is submitted as a PDF report on Canvas.
